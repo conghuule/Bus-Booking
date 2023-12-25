@@ -1,18 +1,25 @@
-const { DataTypes } = require("sequelize");
+"use strict";
 
-const createStation = (sequelize) => {
-  return sequelize.define("Stations", {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+const { Model } = require("sequelize");
+
+module.exports = (sequelize, DataTypes) => {
+  class Station extends Model {
+    static associate(models) {}
+  }
+
+  Station.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      address: DataTypes.STRING,
+      province: DataTypes.STRING,
     },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    province: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  });
+    {
+      sequelize,
+      modelName: "Station",
+    }
+  );
+  return Station;
 };

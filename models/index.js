@@ -44,6 +44,15 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
+sequelize
+  .sync({ force: false }) // Use { force: true } to drop existing tables and recreate
+  .then(() => {
+    console.log("Database synchronized");
+  })
+  .catch((err) => {
+    console.error("Error synchronizing database:", err);
+  });
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
