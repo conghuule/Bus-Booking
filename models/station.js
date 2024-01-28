@@ -12,9 +12,16 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notEmpty: true,
+          len: [3, 30],
+        },
       },
       address: DataTypes.STRING,
-      province: DataTypes.STRING,
+      province: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       sequelize,
